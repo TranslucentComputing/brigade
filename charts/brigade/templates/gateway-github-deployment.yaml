@@ -21,6 +21,13 @@ spec:
         type: github
     spec:
       serviceAccountName: {{ $fullname }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      affinity:
+        {{- if .Values.nodeAffinity }}
+        nodeAffinity:
+{{ toYaml .Values.nodeAffinity | indent 10 }}
+        {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.gw.registry }}/{{ .Values.gw.name }}:{{ default .Chart.AppVersion .Values.gw.tag }}"

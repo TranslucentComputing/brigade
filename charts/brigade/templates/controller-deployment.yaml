@@ -37,3 +37,10 @@ spec:
             value: {{ default "brigade-worker" .Values.worker.serviceAccount }}
       {{ if .Values.privateRegistry }}imagePullSecrets:
         - name: {{.Values.privateRegistry}}{{ end }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      affinity:
+        {{- if .Values.nodeAffinity }}
+        nodeAffinity:
+{{ toYaml .Values.nodeAffinity | indent 10 }}
+        {{- end -}}

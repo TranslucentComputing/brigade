@@ -170,3 +170,22 @@ ingress:
 # Before enabling this, log into the acr registry with Docker and then
 # run `scripts/generate-acr-secret.sh`
 #privateRegistry: brigade-registry
+
+# Tolerations for nodes that have taints on them.
+# https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+# tolerations:
+# - key: "key"
+#   operator: "Equal"
+#   value: "value"
+#   effect: "NoSchedule"
+
+## nodeAffinity settings
+# nodeAffinity:
+#   requiredDuringSchedulingIgnoredDuringExecution:
+#     nodeSelectorTerms:
+#     - matchExpressions:
+#       - key: cloud.google.com/gke-preemptible
+#         operator: NotIn
+#         values:
+#         - true
